@@ -1,6 +1,8 @@
 package com.raulavila.tdd.pointofsale2;
 
-public class SaleController {
+import com.raulavila.tdd.pointofsale2.ui.BarcodeScannedListener;
+
+public class SaleController implements BarcodeScannedListener {
     private Display display;
     private Catalog catalog;
 
@@ -11,6 +13,7 @@ public class SaleController {
 
     public void onBarcode(String barcode) {
         //Smell: should I get an empty barcode at all
+        //Smell: this should never happen
         if("".equals(barcode)) {
             display.displayEmptyBarcodeMessage();
             return;

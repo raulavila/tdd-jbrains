@@ -2,11 +2,17 @@ package com.raulavila.tdd.pointofsale2;
 
 import java.util.Locale;
 
-class EnglishLanguageConsoleDisplay implements Display {
+class EnglishLanguageDisplay implements Display {
 
     public static final String PRODUCT_NOT_FOUND_MESSAGE_FORMAT = "Product not found for %s";
     public static final String SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT = "Scanning error: empty barcode";
     public static final String PRICE_IN_DOLLARS_MESSAGE_FORMAT = "$%,.2f";
+    
+    private final PostOffice postOffice;
+
+    public EnglishLanguageDisplay(PostOffice postOffice) {
+        this.postOffice = postOffice;
+    }
 
     @Override
     public void displayProductNotFoundMessage(String barcodeNotFound) {
@@ -28,7 +34,7 @@ class EnglishLanguageConsoleDisplay implements Display {
     }
 
     private void render(String text) {
-        System.out.println(text);
+        postOffice.sendMessage(text);
     }
 
 }
