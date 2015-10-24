@@ -2,7 +2,9 @@ package com.raulavila.tdd.pointofsale2;
 
 import java.util.Locale;
 
-class EnglishLanguageDisplay implements Display {
+//Smell: does the formatting but delegates the rendering...
+// it should either do both or delegate both
+class EnglishLanguageTextDisplay implements Display {
 
     public static final String PRODUCT_NOT_FOUND_MESSAGE_FORMAT = "Product not found for %s";
     public static final String SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT = "Scanning error: empty barcode";
@@ -10,7 +12,9 @@ class EnglishLanguageDisplay implements Display {
     
     private final PostOffice postOffice;
 
-    public EnglishLanguageDisplay(PostOffice postOffice) {
+    //Smell: leaky abstraction, the display doesn't care about sending messages
+    //it seems to want to render templates
+    public EnglishLanguageTextDisplay(PostOffice postOffice) {
         this.postOffice = postOffice;
     }
 

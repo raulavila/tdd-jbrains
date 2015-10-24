@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 public class TextProcessorAndCommandInterpreter {
     private BarcodeScannedListener barcodeScannedListener;
 
+    //Refactor: invert the dependency, so that BarcodeScannedListener
+    //objects subscribe to this, rather than it knowing about the listeners directly
     public TextProcessorAndCommandInterpreter(BarcodeScannedListener barcodeScannedListener) {
         this.barcodeScannedListener = barcodeScannedListener;
     }

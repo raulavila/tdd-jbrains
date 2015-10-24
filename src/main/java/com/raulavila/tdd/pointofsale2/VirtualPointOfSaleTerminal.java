@@ -20,7 +20,7 @@ public class VirtualPointOfSaleTerminal {
                                 }}
 
                         ),
-                        new EnglishLanguageDisplay(new ConsolePostOffice())
+                        new EnglishLanguageTextDisplay(new ConsolePostOffice())
                 )
         );
         

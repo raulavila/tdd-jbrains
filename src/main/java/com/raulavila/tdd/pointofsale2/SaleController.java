@@ -12,8 +12,7 @@ public class SaleController implements BarcodeScannedListener {
     }
 
     public void onBarcode(String barcode) {
-        //Smell: should I get an empty barcode at all
-        //Smell: this should never happen
+        //Refactor: move this up the call stack
         if("".equals(barcode)) {
             display.displayEmptyBarcodeMessage();
             return;
