@@ -56,7 +56,7 @@ public class DisplayPricesToConsoleTest {
         System.setOut(new PrintStream(canvas));
 
         new EnglishLanguageTextDisplay(new ConsolePostOffice())
-                .displayPrice(Price.cents(priceInCents));
+                .displayScannedProductPriceMessage(Price.cents(priceInCents));
         
         assertEquals(
                 Arrays.asList(expectedFormattedPrice),

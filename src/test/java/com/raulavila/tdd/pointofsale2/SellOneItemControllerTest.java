@@ -20,7 +20,7 @@ public class SellOneItemControllerTest {
             allowing(catalog).findPrice(with("::product found::"));
             will(returnValue(irrelevantPrice));
 
-            oneOf(display).displayPrice(with(irrelevantPrice));
+            oneOf(display).displayScannedProductPriceMessage(with(irrelevantPrice));
         }});
 
         SaleController saleController = new SaleController(catalog, display);

@@ -29,7 +29,7 @@ class EnglishLanguageTextDisplay implements Display {
     }
 
     @Override
-    public void displayPrice(Price price) {
+    public void displayScannedProductPriceMessage(Price price) {
         render(mergeTemplate(PRICE_IN_DOLLARS_MESSAGE_FORMAT, price.dollarValue()));
     }
 

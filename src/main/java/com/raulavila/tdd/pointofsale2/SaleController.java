@@ -22,6 +22,6 @@ public class SaleController implements BarcodeScannedListener {
         if(price == null)
             display.displayProductNotFoundMessage(barcode);
         else
-            display.displayPrice(price);
+            display.displayScannedProductPriceMessage(price);
     }
 }
