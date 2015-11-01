@@ -13,6 +13,9 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
+// Refactor These tests really only check formatting, so they
+// should check the formatting more directly and without
+// displaying anything to the console
 @RunWith(Parameterized.class)
 public class DisplayPricesToConsoleTest {
 
@@ -55,7 +58,7 @@ public class DisplayPricesToConsoleTest {
         ByteArrayOutputStream canvas = new ByteArrayOutputStream();
         System.setOut(new PrintStream(canvas));
 
-        new EnglishLanguageTextDisplay(new ConsolePostOffice())
+        new EnglishLanguageTextViewRenderer(new ConsolePostOffice())
                 .displayScannedProductPriceMessage(Price.cents(priceInCents));
         
         assertEquals(

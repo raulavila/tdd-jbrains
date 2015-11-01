@@ -19,10 +19,9 @@ public class VirtualPointOfSaleTerminal {
                                     put("092340077", Price.cents(379));
                                 }}
 
-                        ),
-                        new EnglishLanguageTextDisplay(new ConsolePostOffice())
-                )
-        );
+                        )
+                ),
+                new EnglishLanguageTextViewRenderer(new ConsolePostOffice()));
         
         textProcessorAndCommandInterpreter.process(
                 new StringReader(

@@ -10,6 +10,9 @@ import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
+// Refactor These tests really only check formatting, so they
+// should check the formatting more directly and without
+// displaying anything to the console
 public class DisplayMessagesToConsoleTest {
 
     private PrintStream productionSystemOut;
@@ -29,7 +32,7 @@ public class DisplayMessagesToConsoleTest {
         ByteArrayOutputStream canvas = new ByteArrayOutputStream();
         System.setOut(new PrintStream(canvas));
 
-        new EnglishLanguageTextDisplay(new ConsolePostOffice()).displayProductNotFoundMessage("9183748");
+        new EnglishLanguageTextViewRenderer(new ConsolePostOffice()).displayProductNotFoundMessage("9183748");
         
         assertEquals(
                 Arrays.asList("Product not found for 9183748"),
@@ -41,7 +44,7 @@ public class DisplayMessagesToConsoleTest {
         ByteArrayOutputStream canvas = new ByteArrayOutputStream();
         System.setOut(new PrintStream(canvas));
 
-        new EnglishLanguageTextDisplay(new ConsolePostOffice()).displayEmptyBarcodeMessage();
+        new EnglishLanguageTextViewRenderer(new ConsolePostOffice()).displayEmptyBarcodeMessage();
 
         assertEquals(
                 Arrays.asList("Scanning error: empty barcode"),
@@ -53,11 +56,11 @@ public class DisplayMessagesToConsoleTest {
         ByteArrayOutputStream canvas = new ByteArrayOutputStream();
         System.setOut(new PrintStream(canvas));
 
-        EnglishLanguageTextDisplay englishLanguageTextDisplay = new EnglishLanguageTextDisplay(new ConsolePostOffice());
-        englishLanguageTextDisplay.displayProductNotFoundMessage("9183748");
-        englishLanguageTextDisplay.displayEmptyBarcodeMessage();
-        englishLanguageTextDisplay.displayProductNotFoundMessage("323");
-        englishLanguageTextDisplay.displayEmptyBarcodeMessage();
+        EnglishLanguageTextViewRenderer englishLanguageTextViewRenderer = new EnglishLanguageTextViewRenderer(new ConsolePostOffice());
+        englishLanguageTextViewRenderer.displayProductNotFoundMessage("9183748");
+        englishLanguageTextViewRenderer.displayEmptyBarcodeMessage();
+        englishLanguageTextViewRenderer.displayProductNotFoundMessage("323");
+        englishLanguageTextViewRenderer.displayEmptyBarcodeMessage();
         
         assertEquals(
                 Arrays.asList(

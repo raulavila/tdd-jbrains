@@ -2,6 +2,7 @@ package com.raulavila.tdd.pointofsale2.ui;
 
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -12,6 +13,15 @@ public class InterpretTextCommandsTest {
     @Rule
     public final JUnitRuleMockery context = new JUnitRuleMockery();
     
+    private final ViewRenderer viewRenderer = context.mock(ViewRenderer.class);
+
+    @Before
+    public void ignoreTheViewRenderer() throws Exception {
+        context.checking(new Expectations() {{
+            ignoring(viewRenderer);
+        }});
+    }
+
     @Test
     public void zero() throws Exception {
         BarcodeScannedListener barcodeScannedListener = 
@@ -22,7 +32,7 @@ public class InterpretTextCommandsTest {
 
         }});
 
-        new TextProcessorAndCommandInterpreter(barcodeScannedListener).process(new StringReader(""));
+        new TextProcessorAndCommandInterpreter(barcodeScannedListener, viewRenderer).process(new StringReader(""));
     }
 
     @Test
@@ -34,7 +44,7 @@ public class InterpretTextCommandsTest {
             oneOf(barcodeScannedListener).onBarcode("::barcode::");
         }});
         
-        new TextProcessorAndCommandInterpreter(barcodeScannedListener).process(
+        new TextProcessorAndCommandInterpreter(barcodeScannedListener, viewRenderer).process(
                 new StringReader("::barcode::\n"));
 
     }
@@ -50,7 +60,7 @@ public class InterpretTextCommandsTest {
             oneOf(barcodeScannedListener).onBarcode("::barcode::");
         }});
 
-        new TextProcessorAndCommandInterpreter(barcodeScannedListener).process(
+        new TextProcessorAndCommandInterpreter(barcodeScannedListener, viewRenderer).process(
                 new StringReader("\t\t    \t::barcode::     \t \t\n"));
 
     }
@@ -66,7 +76,7 @@ public class InterpretTextCommandsTest {
             oneOf(barcodeScannedListener).onBarcode("::barcode 3::");
         }});
 
-        new TextProcessorAndCommandInterpreter(barcodeScannedListener).process(
+        new TextProcessorAndCommandInterpreter(barcodeScannedListener, viewRenderer).process(
                 new StringReader("::barcode 1::\n::barcode 2::\n::barcode 3::\n"));
     }
 
@@ -83,7 +93,7 @@ public class InterpretTextCommandsTest {
             oneOf(barcodeScannedListener).onBarcode("::barcode 3::");
         }});
 
-        new TextProcessorAndCommandInterpreter(barcodeScannedListener).process(
+        new TextProcessorAndCommandInterpreter(barcodeScannedListener, viewRenderer).process(
                 new StringReader("\n::barcode 1::\n\t\n::barcode 2::\n\n  \n::barcode 3::\n\n"));
 
     }
